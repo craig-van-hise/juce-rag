@@ -1,0 +1,11 @@
+requests
+beautifulsoup4
+chromadb
+sentence-transformers
+langchain-text-splitters
+rank-bm25
+tf-keras
+mcp
+google-adk
+python-dotenv
+pytest
