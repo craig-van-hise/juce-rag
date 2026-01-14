@@ -1,0 +1,12 @@
+{
+    "mcpServers": {
+        "juce-expert": {
+            "command": "python3",
+            "args": [
+                "src/server.py"
+            ],
+            "disabled": false,
+            "autoAllow": true
+        }
+    }
+}

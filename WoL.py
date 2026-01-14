@@ -8,8 +8,8 @@ load_dotenv()
 
 # --- CONFIGURATION ---
 TARGET_MAC = os.getenv("WOL_MAC", "XX-XX-XX-XX-XX-XX")       # Your Windows PC Wi-Fi MAC
-BROADCAST_IP = os.getenv("WOL_BROADCAST", "255.255.255.255")       # General Broadcast
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://100.102.102.102:11434")
+BROADCAST_IP = os.getenv("WOL_BROADCAST_ADDR")       # General Broadcast
+OLLAMA_URL = os.getenv("OLLAMA_URL")
 
 # Parse IP/Port from URL
 from urllib.parse import urlparse
@@ -18,7 +18,7 @@ try:
     OLLAMA_IP = parsed.hostname
     OLLAMA_PORT = parsed.port or 11434
 except:
-    OLLAMA_IP = "100.102.102.102"
+    OLLAMA_IP = os.getenv("OLLAMA_HOST_IP")
     OLLAMA_PORT = 11434
 # ---------------------
 

@@ -234,7 +234,7 @@ class VectorStore:
         print("Initializing ChromaDB with Ollama Embeddings...")
         
         # Configuration
-        default_url = "http://100.102.102.102:11434"
+        default_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
         self.ollama_url = os.getenv("OLLAMA_URL", default_url)
 
         # --- Lazy Wake-on-LAN ---
@@ -246,7 +246,7 @@ class VectorStore:
                 host = parsed.hostname
                 port = parsed.port or 11434
             except:
-                host = "100.102.102.102"
+                host = os.getenv("OLLAMA_HOST_IP", "localhost")
                 port = 11434
             is_up = False
             try:
