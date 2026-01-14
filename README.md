@@ -82,7 +82,7 @@ fastmcp run src/server.py
 │   ├── adk_tools.py       # ADK Tool definitions
 │   └── server.py          # MCP Server for IDE tools
 ├── tests/                 # Integration & Unit Tests
-├── TURBO_wol.py           # Utility: Wake-on-LAN script
+├── WoL.py                 # Utility: Wake-on-LAN script
 └── requirements.txt       # Python dependencies
 ```
 

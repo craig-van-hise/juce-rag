@@ -11,7 +11,8 @@ This project implements a local Retrieval-Augmented Generation (RAG) system for 
   - `evaluate_rag_quality.py` benchmark passed (Exact Match + Fuzzy + Conceptual).
   - `test_rag.py` suite passed (including regression tests for exact ranking).
   - **Path Resolution Fix**: `adk_tools.py` and `build_rag.py` now use absolute paths to locate the database relative to the project root (`../data/juce_chroma_db`).
-  - **Cleanup**: Extraneous scripts and duplicate data folders moved to `X_cleanup/`.
+  - **Security**: Hardcoded network configurations (IPs/Macs) removed and moved to `.env`.
+
 
 ## Architecture
 1.  **Scraper (`JuceScraper`)**:
