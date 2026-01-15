@@ -7,19 +7,40 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # --- CONFIGURATION ---
-TARGET_MAC = os.getenv("WOL_MAC", "XX-XX-XX-XX-XX-XX")       # Your Windows PC Wi-Fi MAC
-BROADCAST_IP = os.getenv("WOL_BROADCAST_ADDR")       # General Broadcast
+TARGET_MAC = os.getenv("WOL_MAC")
+BROADCAST_IP = os.getenv("WOL_BROADCAST_ADDR")
 OLLAMA_URL = os.getenv("OLLAMA_URL")
+
+# --- VALIDATION ---
+missing_vars = []
+if not TARGET_MAC or TARGET_MAC == "XX-XX-XX-XX-XX-XX":
+    missing_vars.append("WOL_MAC (in .env)")
+if not BROADCAST_IP:
+    missing_vars.append("WOL_BROADCAST_ADDR (in .env)")
+
+if missing_vars:
+    print("❌ Error: Missing configuration variables:")
+    for v in missing_vars:
+        print(f"   - {v}")
+    print("\nPlease update your .env file.")
+    exit(1)
 
 # Parse IP/Port from URL
 from urllib.parse import urlparse
 try:
-    parsed = urlparse(OLLAMA_URL)
-    OLLAMA_IP = parsed.hostname
-    OLLAMA_PORT = parsed.port or 11434
-except:
-    OLLAMA_IP = os.getenv("OLLAMA_HOST_IP")
-    OLLAMA_PORT = 11434
+    if OLLAMA_URL:
+        parsed = urlparse(OLLAMA_URL)
+        OLLAMA_IP = parsed.hostname
+        OLLAMA_PORT = parsed.port or 11434
+    else:
+        OLLAMA_IP = os.getenv("OLLAMA_HOST_IP")
+        OLLAMA_PORT = 11434
+        
+    if not OLLAMA_IP:
+        raise ValueError("No OLLAMA_IP found")
+except Exception as e:
+    print(f"❌ Error parsing Ollama configuration: {e}")
+    exit(1)
 # ---------------------
 
 def create_magic_packet(macaddress):
