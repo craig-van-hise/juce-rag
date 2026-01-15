@@ -18,7 +18,7 @@ class JuceReasoningAgent:
         # 2. Initialize Model
         # Using flash for speed/cost effectiveness for the internal reasoning layer
         self.model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash",
+            model_name="gemini-2.0-flash-exp",
             system_instruction=(
                 "You are an expert C++ JUCE Framework Developer. "
                 "Your goal is to answer the user's question based on the provided documentation context. "
